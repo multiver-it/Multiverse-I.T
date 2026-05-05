@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse IT</title>
+  <meta name="description" content="Multiverse IT - মোবাইল, কম্পিউটার সার্ভিসিং, গ্রাফিক্স ডিজাইন, এক্সেসরিজ ও ডিজিটাল সল্যুশন">
+
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;}
+
+    header{
+      background:linear-gradient(45deg,#0d6efd,#6f42c1);
+      color:white;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    header h1{margin:0;font-size:38px;}
+
+    nav{
+      background:#111;
+      padding:12px;
+      text-align:center;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
+
+    nav a{
+      color:#fff;
+      margin:0 10px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .hero{
+      max-width:1100px;
+      margin:30px auto;
+      background:white;
+      padding:60px 20px;
+      border-radius:15px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      margin:10px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:bold;
+      color:white;
+    }
+
+    .btn-blue{background:#0d6efd;}
+    .btn-green{background:#25D366;}
+
+    section{
+      max-width:1100px;
+      margin:auto;
+      padding:30px 20px;
+    }
+
+    h2{text-align:center;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      text-align:center;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .box{
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      margin-top:20px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    input,textarea{
+      width:100%;
+      padding:10px;
+      margin:8px 0;
+      border-radius:6px;
+      border:1px solid #ccc;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#0d6efd;
+      color:white;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .msg{
+      background:#f8f9fa;
+      padding:10px;
+      margin:8px 0;
+      border-radius:8px;
+      border:1px solid #ddd;
+    }
+
+    .whatsapp{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#25D366;
+      color:white;
+      padding:12px 18px;
+      border-radius:50px;
+      font-weight:bold;
+      text-decoration:none;
+    }
+
+    footer{
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Multiverse IT</h1>
+  <p>আপনার ডিজিটাল সল্যুশনের বিশ্বস্ত ঠিকানা</p>
+</header>
+
+<nav>
+  <a href="#services">সেবা</a>
+  <a href="#contact">যোগাযোগ</a>
+  <a href="#admin">Admin</a>
+</nav>
+
+<div class="hero">
+  <h2>আপনার সব আইটি সল্যুশন এক জায়গায়</h2>
+  <a class="btn btn-blue" href="#contact">যোগাযোগ</a>
+  <a class="btn btn-green" href="https://wa.me/8801XXXXXXXXX">WhatsApp</a>
+</div>
+
+<section id="services">
+  <h2>সেবা সমূহ</h2>
+  <div class="grid">
+    <div class="card">📱 মোবাইল সার্ভিসিং</div>
+    <div class="card">💻 কম্পিউটার সার্ভিসিং</div>
+    <div class="card">🎨 মোবাইল ও কম্পিউটার এক্সেসরিজ বিক্রয়</div>
+    <div class="card">🗺️ জমি জরিপ</div>
+    <div class="card">🌐 অনলাইন সেবা</div>
+  </div>
+</section>
+
+<section id="contact" class="box">
+  <h2>যোগাযোগ</h2>
+
+  <input id="name" placeholder="নাম">
+  <input id="email" placeholder="ইমেইল">
+  <textarea id="msg" placeholder="মেসেজ"></textarea>
+  <button onclick="send()">পাঠান</button>
+
+  <p>📞 01540-526443</p>
+</section>
+
+<section id="admin" class="box">
+  <h2>Admin Panel (Demo)</h2>
+  <button onclick="admin()">Login</button>
+  <div id="panel"></div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/01540526443">WhatsApp</a>
+
+<footer>
+  <p>© 2026 Multiverse IT</p>
+</footer>
+
+<script>
+// DEMO LOCAL SYSTEM
+function send(){
+  let n=document.getElementById('name').value;
+  let e=document.getElementById('email').value;
+  let m=document.getElementById('msg').value;
+
+  if(!n||!e||!m){alert('সব তথ্য দিন');return;}
+
+  let data=JSON.parse(localStorage.getItem('msgs')||'[]');
+  data.push({n,e,m});
+  localStorage.setItem('msgs',JSON.stringify(data));
+
+  alert('মেসেজ সেভ হয়েছে (Demo Mode)');
+}
+
+function admin(){
+  let p=prompt('Password');
+  if(p!=='1234'){alert('ভুল password');return;}
+
+  let data=JSON.parse(localStorage.getItem('msgs')||'[]');
+  let html="<h3>Messages</h3>";
+
+  data.forEach(x=>{
+    html+=`<div class='msg'><b>${x.n}</b><br>${x.e}<br>${x.m}</div>`;
+  });
+
+  document.getElementById('panel').innerHTML=html;
+}
+</script>
+
+</body>
+</html>
